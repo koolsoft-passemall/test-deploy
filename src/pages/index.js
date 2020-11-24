@@ -14,14 +14,13 @@ import HeaderMenu from '../components/HeaderMenu';
 import { Clock, FreeCircle, FreeIcon, LoginIcon, PenIcon, TotalQuestions } from '../components/Icons';
 import { CreditCard as CreditCardIcon } from '@material-ui/icons'
 import SEO from '../components/SEO';
-import { APP_NEW_DOMAIN, GA_ID } from '../config_app';
+import { GA_ID } from '../config_app';
 import WebAppInfo from '../models/WebAppInfo';
 import { wrapper } from '../redux/store';
 import { callApi } from '../services';
 import { getNewDomain, isSuperApp, oldUser, scrollToTopic, setScrollDownAuto } from '../utils';
 const HomeContent = dynamic(() => import("../container/home/HomeContent"), { ssr: false })
 const SelectStatePopup = dynamic(() => import("../components/SelectStatePopup"), { ssr: false })
-const GameChildScreen = dynamic(() => import("./[appNameId]/[screenChild]"), { ssr: false })
 
 const useStyles = makeStyles({
     root: {
@@ -76,7 +75,6 @@ const AppHome = ({ appInfoState, url }) => {
     const [openPopupChangeState, setOpenPopupChangeState] = useState(false);
     let webAppInfo = WebAppInfo.getAppInfo(appInfoState.id, appInfoState.name);
     let myColor = webAppInfo.mainColor;
-    // console.log("appInfoState.bucket", appInfoState.bucket)
     if (!url) {
         let domain = getNewDomain(appInfoState.id);
         if (domain) {
@@ -474,7 +472,7 @@ const FeedbackItem = ({ content, name, createTime, index }) => {
 
 // export const getServerSideProps = wrapper.getServerSideProps(async (context) => {
 export async function getStaticProps(context) {
-    const appInfoState = await callApi({ url: '/data?type=get_app_info&appNameId=' + "cdl-practice-test-2020", params: null, method: 'post' })
+    const appInfoState = await callApi({ url: '/data?type=get_app_info&appNameId=' + "asvab-practice-test-2020", params: null, method: 'post' })
     let url = "";
     return {
         props: {
