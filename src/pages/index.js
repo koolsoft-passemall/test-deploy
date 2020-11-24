@@ -277,7 +277,7 @@ const ListInfoGraphic = (props) => {
             <Container>
                 <Grid container alignItems="stretch">
                     <Grid item xs={12} sm={4}>
-                        <LazyLoad><img width="100%" src={srcImage1} alt="infographic-1" style={{ display: "block" }}></img></LazyLoad>
+                        {/* <LazyLoad><img width="100%" src={srcImage1} alt="infographic-1" style={{ display: "block" }}></img></LazyLoad> */}
                     </Grid>
                     <Grid item xs={12} sm={1}></Grid>
                     <Grid item xs={12} sm={6}>
@@ -353,7 +353,7 @@ const ListInfoGraphic = (props) => {
                     </Grid>
                     <Grid item xs={12} sm={2}></Grid>
                     <Grid item xs={12} sm={4}>
-                        <LazyLoad><img src={srcImage2} alt="infographic-2" style={{ display: "block", width: "100%" }}></img></LazyLoad>
+                        {/* <LazyLoad><img src={srcImage2} alt="infographic-2" style={{ display: "block", width: "100%" }}></img></LazyLoad> */}
                     </Grid>
                     <Grid item xs={12} sm={1}></Grid>
                 </Grid>
@@ -382,7 +382,7 @@ const MobileDescription = ({ appInfoState, color = "#FFA86C", appName }) => {
                         <h3>Practice offline & on the go with the free {appName} app</h3>
                         <p>Available for IOS and Android devices.</p>
                         <div className="app-info">
-                            <img src={appInfoState.avatar} alt="app-image" style={{ borderRadius: "15px", height: "100px" }}></img>
+                            {/* <img src={appInfoState.avatar} alt="app-image" style={{ borderRadius: "15px", height: "100px" }}></img> */}
                             <div className="app-info-right">
                                 <h4>{appInfoState.appName}</h4>
                                 <Rating value={5} style={isMobile ? { color: "#fff", fontSize: "16px" } : { color: "#fff", fontSize: "20px" }} readOnly ></Rating>
@@ -395,7 +395,7 @@ const MobileDescription = ({ appInfoState, color = "#FFA86C", appName }) => {
                                     action: 'Click Google Play App Home'
                                 })
                             }}>
-                                <LazyLoad><img alt="Link google app" src="/images/googlePlayIcon.png" /></LazyLoad>
+                                {/* <LazyLoad><img alt="Link google app" src="/images/googlePlayIcon.png" /></LazyLoad> */}
                             </a>
                             <div style={{ width: '20px' }}></div>
                             <a href={appInfoState.urlIos} target="_blank" rel="noopener noreferrer" onClick={() => {

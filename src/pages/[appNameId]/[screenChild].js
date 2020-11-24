@@ -24,7 +24,6 @@ const GameChildScreen = ({ appInfoState, url }) => {
         oldUser()
     }, [])
     const store = useStore((state) => state);
-    // console.log("store", store, appInfoState)
     return (
         <>
             <SEO appInfo={appInfoState} url={url}>
@@ -34,7 +33,7 @@ const GameChildScreen = ({ appInfoState, url }) => {
                 <link rel="stylesheet" type="text/css" href="/styles/study.css" />
                 <link rel="stylesheet" type="text/css" href="/styles/header.css" />
             </SEO>
-            <div style={{width:"100%", height:"100%"}}>
+            <div style={{ width: "100%", height: "100%" }}>
                 <Provider store={store}>
                     <PersistGate
                         persistor={store.__persistor}
@@ -65,11 +64,13 @@ export async function getStaticPaths() {
     let topicNameIdJson = JSON.parse(topicNameIdFile)
     let arrayTopicNameId = [];
     for (let appNameId in topicNameIdJson) {
-        topicNameIdJson[appNameId].forEach(ele => {
-            arrayTopicNameId.push({ params: { appNameId: appNameId, screenChild: ele } });
-        })
-        arrayTopicNameId.push({ params: { appNameId: appNameId, screenChild: "review" } });
-        arrayTopicNameId.push({ params: { appNameId: appNameId, screenChild: "test" } });
+        if (appNameId === "asvab-practice-test-2020") {
+            topicNameIdJson[appNameId].forEach(ele => {
+                arrayTopicNameId.push({ params: { appNameId: appNameId, screenChild: ele } });
+            })
+            arrayTopicNameId.push({ params: { appNameId: appNameId, screenChild: "review" } });
+            arrayTopicNameId.push({ params: { appNameId: appNameId, screenChild: "test" } });
+        }
     }
     return {
         paths: arrayTopicNameId,
@@ -77,7 +78,7 @@ export async function getStaticPaths() {
     };
 }
 function ScreenChild({ appInfoState }) {
-    if(APP_NEW_DOMAIN){
+    if (APP_NEW_DOMAIN) {
         const router = useRouter();
         let screen = router.query.appNameId
         screen = screen ?? '';
