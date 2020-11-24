@@ -45,10 +45,10 @@ const useStyles = makeStyles({
         fontWeight: "bold"
     },
     buttonStartTest: {
-        backgroundColor: props => props.color, 
-        color: "white", 
-        padding: "10px 30px", 
-        borderRadius: "50px", 
+        backgroundColor: props => props.color,
+        color: "white",
+        padding: "10px 30px",
+        borderRadius: "50px",
         fontWeight: "600",
         fontSize: "16px",
         "&:hover, &:focus": {
@@ -65,7 +65,7 @@ const AppHome = ({ appInfoState, url, home }) => {
         console.error("xxxxxxxxxxxxxxxxxxxxxxxx appInfo null");
     }
     // console.log("xxxxx appInfoState", appInfoState)
-    if(APP_NEW_DOMAIN && home !== true){
+    if (APP_NEW_DOMAIN && home !== true) {
         return <GameChildScreen appInfoState={appInfoState} url={url} />
     }
     const theme = useTheme();
@@ -190,18 +190,20 @@ const _Header = (props) => {
             <div style={{ position: "absolute", top: "0", left: "0", width: "100%", height: "100%" }}>
                 <HeaderMenu appInfo={props.appInfo} />
                 <Container className="container-header">
-                    <div style={{height: props.isMobile ? "70px" : "100px"}}></div>
+                    <div style={{ height: props.isMobile ? "70px" : "100px" }}></div>
                     <div className="header-title">
                         <h1 style={{ textTransform: "uppercase" }}>{webAppInfo.header.title}</h1>
                         <div style={{ fontWeight: "500", fontSize: '1.1em' }}>{webAppInfo.header.description}</div>
                         <Button
                             style={{ fontSize: '16px' }}
                             variant="contained"
-                            className={classes.button} 
-                            onClick={() => { onStartTest() }} 
-                            style={{ display: props.isMobile ? "flex" : "inline-flex", 
-                            marginLeft: props.isMobile ? "auto" : "", 
-                            marginRight: props.isMobile ? "auto" : "" }}>START YOUR PRACTICE TEST</Button>
+                            className={classes.button}
+                            onClick={() => { onStartTest() }}
+                            style={{
+                                display: props.isMobile ? "flex" : "inline-flex",
+                                marginLeft: props.isMobile ? "auto" : "",
+                                marginRight: props.isMobile ? "auto" : ""
+                            }}>START YOUR PRACTICE TEST</Button>
                     </div>
                 </Container>
             </div>
@@ -300,8 +302,8 @@ const ListInfoGraphic = (props) => {
                         <div style={{ display: "flex", flexDirection: "column" }}>
                             <div style={{ color: props.color }} className="titlex">{webAppInfo.numberInfo.number1}</div>
                             <p className="dot-2 descriptionx">{webAppInfo.block4[1].title}</p>
-                            {webAppInfo.numberInfo.free ? <FreeCircle color={props.color} ></FreeCircle> 
-                                : <div style={{ 
+                            {webAppInfo.numberInfo.free ? <FreeCircle color={props.color} ></FreeCircle>
+                                : <div style={{
                                     backgroundColor: "#5a6695",
                                     color: "white",
                                     marginTop: "auto",
@@ -338,9 +340,9 @@ const ListInfoGraphic = (props) => {
                         <h2>{webAppInfo.block5.title}</h2>
                         <p>{webAppInfo.block5.description}</p>
                         <div style={{ display: "inline-flex", flexDirection: "column", justifyContent: "flex-start", alignItems: "flex-start", marginTop: "20px" }}>
-                            <Button 
+                            <Button
                                 className={classes.buttonStartTest}
-                                style={{ display: props.isMobile ? "none" : "block" }} 
+                                style={{ display: props.isMobile ? "none" : "block" }}
                                 onClick={() => { onStartTest(3); }} fullWidth={false}>START YOUR PRACTICE TEST</Button>
                             <ArrowDownwardIcon style={
                                 {
@@ -413,9 +415,8 @@ const MobileDescription = ({ appInfoState, color = "#FFA86C", appName }) => {
                         </div>
                     </div>
                 </Grid>
-                <Grid item xs={4} sm={6}>
-                    <div className="mobile-description-image">
-                    </div>
+                <Grid item xs={4} sm={6} style={{ padding: isMobile ? "0px" : "12px" }}>
+                    <img src={isMobile ? "/images/screenshot-2.png" : "/images/screenshot.png"} alt="screenshot" style={{ height: isMobile ? "230px" : "100%", width: isMobile ? "110px" : "100%" }}></img>
                 </Grid>
             </Grid>
         </Container>
