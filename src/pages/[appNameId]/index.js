@@ -416,20 +416,20 @@ const MobileDescription = ({ appInfoState, color = "#FFA86C", appName }) => {
                     </div>
                 </Grid>
                 <Grid item xs={4} sm={6} style={{ padding: isMobile ? "0px" : "12px" }}>
-                    <img src={isMobile ? "/images/screenshot-2.png" : "/images/screenshot.png"} alt="screenshot" style={{ height: isMobile ? "230px" : "100%", width: isMobile ? "110px" : "100%" }}></img>
+                    <LazyLoad><img src={isMobile ? "/images/screenshot-2.png" : "/images/screenshot.png"} alt="screenshot" style={{ height: isMobile ? "230px" : "100%", width: isMobile ? "110px" : "100%" }}></img></LazyLoad>
                 </Grid>
-            </Grid>
+                </Grid>
         </Container>
     )
 }
-const Feedback = ({ isMobile, appId }) => {
+const Feedback = ({ isMobile, appId}) => {
     const [loading, setLoading] = useState(true);
     const [feedbacks, setFeedbacks] = useState([]);
     useEffect(() => {
-        callApi({ url: '/data?type=get_user_rates&appId=' + appId, params: null, method: 'post' }).then((data) => {
-            setLoading(false);
-            setFeedbacks(data);
-        });
+                callApi({ url: '/data?type=get_user_rates&appId=' + appId, params: null, method: 'post' }).then((data) => {
+                    setLoading(false);
+                    setFeedbacks(data);
+                });
     }, [appId])
     if (loading) {
         return <CircularProgress />
@@ -438,7 +438,7 @@ const Feedback = ({ isMobile, appId }) => {
         return null;
     }
     const settings = {
-        infinite: true,
+                infinite: true,
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
@@ -448,32 +448,32 @@ const Feedback = ({ isMobile, appId }) => {
         arrows: true
     };
     return <Container className="feedback-container">
-        <div style={{ position: 'relative' }}>
-            <Slider {...settings}>
-                {
-                    feedbacks.map((feedback, index) => {
-                        return <FeedbackItem
-                            key={"XX-FeedbackItem-" + feedback.id + "-" + index}
-                            content={feedback.content}
-                            name={feedback.userName}
-                            createTime={feedback.createDate}
-                            index={index}
-                        />
-                    })
-                }
-            </Slider>
-        </div>
-    </Container>
+                <div style={{ position: 'relative' }}>
+                    <Slider {...settings}>
+                        {
+                            feedbacks.map((feedback, index) => {
+                                return <FeedbackItem
+                                    key={"XX-FeedbackItem-" + feedback.id + "-" + index}
+                                    content={feedback.content}
+                                    name={feedback.userName}
+                                    createTime={feedback.createDate}
+                                    index={index}
+                                />
+                            })
+                        }
+                    </Slider>
+                </div>
+            </Container>
 }
 
-const FeedbackItem = ({ content, name, createTime, index }) => {
+const FeedbackItem = ({ content, name, createTime, index}) => {
     return <div className="feedback-item">
-        <div className="content">{content}</div>
-        <div className="infos">
-            <LazyLoad><img className="avatar" src={index % 3 === 0 ? "/images/avatar-1.png" : (index % 3 === 1 ? "/images/avatar-2.png" : "/images/avatar-3.png")} alt="avatar"></img></LazyLoad>
-            <div className="name">{name}</div>
-        </div>
-    </div>
+                <div className="content">{content}</div>
+                <div className="infos">
+                    <LazyLoad><img className="avatar" src={index % 3 === 0 ? "/images/avatar-1.png" : (index % 3 === 1 ? "/images/avatar-2.png" : "/images/avatar-3.png")} alt="avatar"></img></LazyLoad>
+                    <div className="name">{name}</div>
+                </div>
+            </div>
 }
 
 // export const getServerSideProps = wrapper.getServerSideProps(async (context) => {
@@ -482,8 +482,8 @@ export async function getServerSideProps(context) {
     const appInfoState = await callApi({ url: '/data?type=get_app_info&appNameId=' + appNameId, params: null, method: 'post' })
     let url = context.req.headers.referer;
     return {
-        props: {
-            appInfoState: appInfoState ? appInfoState : {},
+                props: {
+                appInfoState: appInfoState ? appInfoState : {},
             url: url ? url : '',
         }
     }
